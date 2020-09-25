@@ -68,21 +68,23 @@ char String::at(size_t idx) const
     return str[idx];
 }
 
+// FIXME Move to unit test
 void checkStringAppend()
 {
     String s1("Hello,");
     String s2(" world!");
 
-    // теперь s1 хранит "Hello, world!"
+    // пїЅпїЅпїЅпїЅпїЅпїЅ s1 пїЅпїЅпїЅпїЅпїЅпїЅ "Hello, world!"
     s1.append(s2);
     std::cout << s1.getStr() << std::endl;
 
     String s("Hello");
-    // теперь s хранит "HelloHello"
+    // пїЅпїЅпїЅпїЅпїЅпїЅ s пїЅпїЅпїЅпїЅпїЅпїЅ "HelloHello"
     s.append(s);
     std::cout << s.getStr() << std::endl;
 }
 
+// FIXME Move to unit test
 void checkStringEqual()
 {
     String str1(0, 'n');
@@ -92,6 +94,7 @@ void checkStringEqual()
     str4 = str4;
 }
 
+// FIXME move to Unit test
 void checkStringAt()
 {
     String greet("Hello");

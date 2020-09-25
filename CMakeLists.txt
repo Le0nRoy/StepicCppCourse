@@ -6,20 +6,20 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(src /
-    tests.cpp /
+    main.cpp /
     src/String.cpp /
     src/Cls.cpp /
-    src/Expression.cpp /
-    src/visitor.cpp /
-    )
+    src/Utils.cpp
+    src/Visitor.cpp /
+    src/Rational.cpp src/ScopedPtr.cpp)
 
 set(headers /
     src/Cls.h /
-    src/Expression.h /
     src/String.h /
-    src/visitor.h /
-    src/rational.h
-    src/scoped_ptr.h
+    src/Visitor.h /
+    src/Rational.h /
+    src/ScopedPtr.h /
+    src/Utils.h /
     )
 
 #enable_testing()

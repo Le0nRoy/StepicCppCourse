@@ -5,6 +5,8 @@
 #ifndef TESTS_SCOPED_PTR_H
 #define TESTS_SCOPED_PTR_H
 
+#include "Visitor.h"
+
 struct Expression;
 struct Number;
 struct BinaryOperation;
@@ -13,13 +15,13 @@ struct ScopedPtr
 {
     // реализуйте следующие методы:
     //
-    // explicit ScopedPtr(Expression *ptr = 0)
-    // ~ScopedPtr()
-    // Expression* get() const
-    // Expression* release()
-    // void reset(Expression *ptr = 0)
-    // Expression& operator*() const
-    // Expression* operator->() const
+     explicit ScopedPtr(Expression *ptr = 0);
+     ~ScopedPtr();
+     Expression* get() const;
+     Expression* release();
+     void reset(Expression *ptr = 0);
+     Expression& operator*() const;
+     Expression* operator->() const;
 
 
 private:
