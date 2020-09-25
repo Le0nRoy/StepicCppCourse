@@ -3,9 +3,9 @@
 #include <string>
 #include <cstring>
 
-#include "src/String.h"
-#include "src/Cls.h"
-#include "src/Visitor.h"
+#include "src/headers/String.h"
+#include "src/headers/Cls.h"
+#include "src/headers/Visitor.h"
 
 int main()
 {

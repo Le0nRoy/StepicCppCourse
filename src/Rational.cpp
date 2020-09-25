@@ -2,7 +2,7 @@
 // Created by lap on 9/25/20.
 //
 
-#include "Rational.h"
+#include "headers/Rational.h"
 
 
 void Rational::add(Rational rational) {
@@ -131,4 +131,5 @@ int test_rational() {
     std::cout << r3.to_double() << std::endl;
     r3.div(r2);
     std::cout << r3.to_double() << std::endl;
+    return 0;
 }
