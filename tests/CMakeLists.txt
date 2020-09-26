@@ -14,7 +14,7 @@ add_subdirectory(lib)
 
 # Include block
 set(INCLUDE_DIRS
-    ${${MAIN_LIB_NAME}_SOURCE_DIR}/src/headers
+    ${${MAIN_LIB_NAME}_SOURCE_DIR}/src
     ${gtest_SOURCE_DIR}/include
     ${gtest_SOURCE_DIR}
     )
@@ -23,9 +23,9 @@ include_directories(${INCLUDE_DIRS})
 # Compile block
 set(TEST_SRC
     ClsTests.cpp
-    )
+    StringTests.cpp UtilsTests.cpp VisitorTests.cpp ExpressionTests.cpp RationalTests.cpp)
 
-add_executable(${PROJECT_NAME}
+add_executable(${TEST_EXECUTABLE_NAME}
                ${TEST_SRC}
                )
 
@@ -36,9 +36,7 @@ set(LINK_LIBS
     gtest_main
     )
 
-#target_link_libraries(${PROJECT_NAME} ${MAIN_LIB_NAME})
-#target_link_libraries(${PROJECT_NAME} gtest gtest_main)
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${TEST_EXECUTABLE_NAME}
                       ${LINK_LIBS}
                       )
 

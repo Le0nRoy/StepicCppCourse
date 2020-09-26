@@ -7,30 +7,30 @@
 #include "src/headers/Cls.h"
 #include "src/headers/Visitor.h"
 
-int main()
-{
-    // Works
-//    checkStringAppend();
-
-    // Works
-    //checkGetters();
-
-    // Works
-    //checkStringEqual();
-
-    // Works
-    //checkOverload();
-
-    // Works
-    //checkStringAt();
-
-    // Works
-    //test_equals();
-
-//    test_visitor();
-
-//    std::cin.get();
-}
+//int main()
+//{
+//    // Works
+////    checkStringAppend();
+//
+//    // Works
+//    //checkGetters();
+//
+//    // Works
+//    //checkStringEqual();
+//
+//    // Works
+//    //checkOverload();
+//
+//    // Works
+//    //checkStringAt();
+//
+//    // Works
+//    //test_equals();
+//
+////    test_visitor();
+//
+////    std::cin.get();
+//}
 
 struct Base {
 private:

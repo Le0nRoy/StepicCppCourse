@@ -6,21 +6,14 @@
 struct String {
 public:
     String(const char *str = "");
-
     String(size_t n, char c);
-
+    String(const String &other);
+    String &operator=(const String &other);
     ~String();
 
-    /* Реализуйте оператор присваивания */
-    String &operator=(const String &other);
-
     const char *getStr();
-
-    /* Реализуйте этот метод. */
     void append(String &other);
-
     char &at(size_t idx);
-
     char at(size_t idx) const;
 
 private:
@@ -30,9 +23,3 @@ private:
     void increase_size(unsigned new_size);
 
 };
-
-void checkStringAppend();
-
-void checkStringEqual();
-
-void checkStringAt();

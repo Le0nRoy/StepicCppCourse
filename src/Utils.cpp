@@ -5,35 +5,8 @@
 #include "headers/Utils.h"
 #include <iostream>
 
-///
-/// Funtions overloading
-///
-
-static void foo(char)
-{
-    std::cout << "char" << std::endl;
-}
-static void foo(signed char)
-{
-    std::cout << "signed char" << std::endl;
-}
-static void foo(unsigned char)
-{
-    std::cout << "unsigned char" << std::endl;
-}
-
-// FIXME move to unit test
-void checkOverload()
-{
-    // Error
-    //foo(97);
-    foo('a');
-}
-
-// FIXME add unit tests
-
 /// \brief Transpose matrix
-/// \param m Pointer to matrix
+/// \param m Pointer to matrix (dynamically allocated)
 /// \param rows number of rows
 /// \param cols number of cols
 /// \return pointer to transposed matrix
@@ -48,8 +21,6 @@ int **transpose(const int *const *m, unsigned rows, unsigned cols)
     }
     return m_t;
 }
-
-// FIXME add unit tests
 
 /// \brief swap 0 row and row with minimal value
 /// \param m pointer to matrix
@@ -72,4 +43,29 @@ void swap_min(int *m[], unsigned rows, unsigned cols)
     int *p = m[0];
     m[0] = m[row];
     m[row] = p;
+}
+
+///
+/// Funtions overloading
+///
+
+static void foo(char)
+{
+    std::cout << "char" << std::endl;
+}
+static void foo(signed char)
+{
+    std::cout << "signed char" << std::endl;
+}
+static void foo(unsigned char)
+{
+    std::cout << "unsigned char" << std::endl;
+}
+
+void checkOverload()
+{
+    // Error
+    //foo(97);
+    // foo(char) is called
+    foo('a');
 }

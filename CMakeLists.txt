@@ -10,7 +10,7 @@ message("Configuring ${MAIN_LIB_NAME}...")
 
 # Include block
 # Compile block
-set(src
+set(SRC
     main.cpp
     src/Utils.cpp
     src/Cls.cpp
@@ -19,7 +19,7 @@ set(src
     src/Rational.cpp
     src/ScopedPtr.cpp
     )
-set(headers
+set(HEADERS
     src/headers/Utils.h
     src/headers/Cls.h
     src/headers/String.h
@@ -28,13 +28,13 @@ set(headers
     src/headers/ScopedPtr.h
     )
 
-add_library(${PROJECT_NAME} STATIC
-            ${src}
-            ${headers}
+add_library(${MAIN_LIB_NAME} STATIC
+            ${SRC}
+            ${HEADERS}
             )
 #add_executable(${PROJECT_NAME}
-#               ${src}
-#               ${headers}
+#               ${SRC}
+#               ${HEADERS}
 #               )
 
 # Link block

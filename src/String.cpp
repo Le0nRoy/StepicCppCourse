@@ -1,5 +1,4 @@
 #include "headers/String.h"
-#include <iostream>
 
 String::String(const char *input_str)
 {
@@ -16,6 +15,16 @@ String::String(size_t n, char c)
     str[size] = '\0';
 }
 
+String::String(const String &other) :
+        size(other.size),
+        str(new char[size + 1]) {
+    for (int i = 0; i < size; ++i) {
+        this->str[i] = other.str[i];
+    }
+    this->str[size] = '\0';
+}
+
+/// Fails if no copy constructor initialized
 String &String::operator=(const String &other)
 {
     if (this == &other)
@@ -34,7 +43,7 @@ String::~String()
     delete[] this->str;
 }
 
-const char *String::getStr() 
+const char *String::getStr()
 {
     return this->str;
 }
@@ -53,7 +62,7 @@ void String::append(String &other)
 {
     int new_size = this->size + other.size + 1;
     String addStr(other.str);
-    int old_size = this->size;
+//    int old_size = this->size;
     this->increase_size(new_size);
     strcat(this->str, addStr.str);
 }
@@ -66,42 +75,4 @@ char &String::at(size_t idx)
 char String::at(size_t idx) const
 {
     return str[idx];
-}
-
-// FIXME Move to unit test
-void checkStringAppend()
-{
-    String s1("Hello,");
-    String s2(" world!");
-
-    // ������ s1 ������ "Hello, world!"
-    s1.append(s2);
-    std::cout << s1.getStr() << std::endl;
-
-    String s("Hello");
-    // ������ s ������ "HelloHello"
-    s.append(s);
-    std::cout << s.getStr() << std::endl;
-}
-
-// FIXME Move to unit test
-void checkStringEqual()
-{
-    String str1(0, 'n');
-    String str2("abvabsd");
-    String str3 = str1;
-    String str4 = str2;
-    str4 = str4;
-}
-
-// FIXME move to Unit test
-void checkStringAt()
-{
-    String greet("Hello");
-    // Calls not const
-    char ch1 = greet.at(0);
-
-    String const const_greet("Hello, Const!");
-    // Calls const
-    char const &ch2 = const_greet.at(0);
 }

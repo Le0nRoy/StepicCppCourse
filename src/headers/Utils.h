@@ -5,8 +5,8 @@
 #ifndef STEPICCPPCOURSE_UTILS_H
 #define STEPICCPPCOURSE_UTILS_H
 
-void checkOverload();
 int **transpose(const int *const *m, unsigned rows, unsigned cols);
 void swap_min(int *m[], unsigned rows, unsigned cols);
+void checkOverload();
 
 #endif //STEPICCPPCOURSE_UTILS_H
