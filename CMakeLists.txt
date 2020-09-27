@@ -15,18 +15,18 @@ set(SRC
     src/Utils.cpp
     src/Cls.cpp
     src/String.cpp
-    src/Visitor.cpp
+    src/Expression.cpp
     src/Rational.cpp
     src/ScopedPtr.cpp
-    )
+    src/SharedPtr.cpp src/headers/SharedPtr.h)
 set(HEADERS
     src/headers/Utils.h
     src/headers/Cls.h
     src/headers/String.h
-    src/headers/Visitor.h
+    src/headers/Expression.h
     src/headers/Rational.h
     src/headers/ScopedPtr.h
-    )
+    src/SharedPtr.cpp src/headers/SharedPtr.h)
 
 add_library(${MAIN_LIB_NAME} STATIC
             ${SRC}

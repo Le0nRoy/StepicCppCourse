@@ -3,7 +3,7 @@
 //
 
 #include "gtest/gtest.h"
-#include "headers/Visitor.h"
+#include "headers/Expression.h"
 
 #define SUITE_NAME ExpressionTests
 

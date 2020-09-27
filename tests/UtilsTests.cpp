@@ -19,8 +19,8 @@ TEST(SUITE_NAME, TransposeTest) {
 //            {4, 5, 6},
 //            {7, 8, 9}
 //    };
-    int **m = new int*[rows];
-    for(row = 0; row < rows; ++row) {
+    int **m = new int *[rows];
+    for (row = 0; row < rows; ++row) {
         m[row] = new int[cols];
         for (col = 0; col < cols; ++col) {
             m[row][col] = row * cols + (col + 1);
@@ -36,11 +36,13 @@ TEST(SUITE_NAME, TransposeTest) {
 
     for (row = 0; row < rows; ++row) {
         for (col = 0; col < cols; ++col) {
-            EXPECT_EQ(m_exp[row][col], m_res[row][col]);
+            EXPECT_EQ(m_exp[row][col], m_res[row][col])
+                                << "Difference is on row: " << row
+                                << " and col: " << col;
         }
     }
 
-    for(row = 0; row < rows; ++row) {
+    for (row = 0; row < rows; ++row) {
         delete[] m[row];
         delete[] m_res[row];
     }
@@ -58,8 +60,8 @@ TEST(SUITE_NAME, SwapMinTest) {
 //            {4, 0, 6},
 //            {7, 8, 9}
 //    };
-    int **m = new int*[rows];
-    for(row = 0; row < rows; ++row) {
+    int **m = new int *[rows];
+    for (row = 0; row < rows; ++row) {
         m[row] = new int[cols];
         for (col = 0; col < cols; ++col) {
             m[row][col] = row * cols + (col + 1);
@@ -76,11 +78,13 @@ TEST(SUITE_NAME, SwapMinTest) {
 
     for (row = 0; row < rows; ++row) {
         for (col = 0; col < cols; ++col) {
-            EXPECT_EQ(m_exp[row][col], m[row][col]);
+            EXPECT_EQ(m_exp[row][col], m[row][col])
+                                << "Difference is on row: " << row
+                                << " and col: " << col;
         }
     }
 
-    for(row = 0; row < rows; ++row) {
+    for (row = 0; row < rows; ++row) {
         delete[] m[row];
     }
     delete[] m;
