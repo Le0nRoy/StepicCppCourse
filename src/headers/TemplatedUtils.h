@@ -1,0 +1,14 @@
+//
+// Created by lap on 9/28/20.
+//
+
+#ifndef STEPICCPPCOURSE_TEMPLATEDUTILS_H
+#define STEPICCPPCOURSE_TEMPLATEDUTILS_H
+
+
+class TemplatedUtils {
+
+};
+
+
+#endif //STEPICCPPCOURSE_TEMPLATEDUTILS_H
