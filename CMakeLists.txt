@@ -18,7 +18,10 @@ set(SRC
     src/Expression.cpp
     src/Rational.cpp
     src/ScopedPtr.cpp
-    src/SharedPtr.cpp src/headers/SharedPtr.h)
+    src/SharedPtr.cpp
+    src/ICloneable.cpp
+    src/TemplatedUtils.cpp
+    )
 set(HEADERS
     src/headers/Utils.h
     src/headers/Cls.h
@@ -26,7 +29,11 @@ set(HEADERS
     src/headers/Expression.h
     src/headers/Rational.h
     src/headers/ScopedPtr.h
-    src/SharedPtr.cpp src/headers/SharedPtr.h)
+    src/headers/SharedPtr.h
+    src/headers/Array.h
+    src/headers/ICloneable.h
+    src/headers/TemplatedUtils.h
+    )
 
 add_library(${MAIN_LIB_NAME} STATIC
             ${SRC}

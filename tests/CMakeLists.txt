@@ -23,7 +23,13 @@ include_directories(${INCLUDE_DIRS})
 # Compile block
 set(TEST_SRC
     ClsTests.cpp
-    StringTests.cpp UtilsTests.cpp VisitorTests.cpp ExpressionTests.cpp RationalTests.cpp)
+    StringTests.cpp
+    UtilsTests.cpp
+    VisitorTests.cpp
+    ExpressionTests.cpp
+    RationalTests.cpp
+    SharedPtrTests.cpp
+    ArrayTests.cpp ArrayWithoutAssignmentTests.cpp)
 
 add_executable(${TEST_EXECUTABLE_NAME}
                ${TEST_SRC}

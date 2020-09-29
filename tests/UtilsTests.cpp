@@ -32,7 +32,7 @@ TEST(SUITE_NAME, TransposeTest) {
             {3, 6, 9}
     };
 
-    int **m_res = transpose(m, rows, cols);
+    int **m_res = stepic::transpose(m, rows, cols);
 
     for (row = 0; row < rows; ++row) {
         for (col = 0; col < cols; ++col) {
@@ -74,7 +74,7 @@ TEST(SUITE_NAME, SwapMinTest) {
             {7, 8, 9}
     };
 
-    swap_min(m, rows, cols);
+    stepic::swap_min(m, rows, cols);
 
     for (row = 0; row < rows; ++row) {
         for (col = 0; col < cols; ++col) {
