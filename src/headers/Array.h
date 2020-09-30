@@ -84,6 +84,7 @@ public:
 
     Array(const Array &arr) :
             size_(arr.size_),
+            // FIXME got memory leak
             data_(static_cast<T *>(operator new[](size_ * sizeof(T)))) {
         for (size_t i = 0; i < size_; ++i) {
             new(data_ + i) T(arr[i]);

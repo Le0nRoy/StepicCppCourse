@@ -20,7 +20,7 @@ set(SRC
     src/ScopedPtr.cpp
     src/SharedPtr.cpp
     src/ICloneable.cpp
-    )
+    src/Any.cpp)
 set(HEADERS
     src/headers/Utils.h
     src/headers/Cls.h

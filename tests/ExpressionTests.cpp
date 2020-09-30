@@ -29,8 +29,11 @@ TEST(SUITE_NAME, EqualsTest) {
     Number *num1 = new Number(5);
     Number *num2 = new Number(1);
     BinaryOperation *bin1 = new BinaryOperation(num2, '+', num1);
+
     EXPECT_FALSE(SUITE_NAME::check_equals(num1, bin1));
     EXPECT_TRUE(SUITE_NAME::check_equals(num1, num2));
+
+    delete bin1;
 }
 
 TEST(SUITE_NAME, ExpressionTest) {
