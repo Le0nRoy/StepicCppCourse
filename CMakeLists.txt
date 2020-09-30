@@ -20,7 +20,6 @@ set(SRC
     src/ScopedPtr.cpp
     src/SharedPtr.cpp
     src/ICloneable.cpp
-    src/TemplatedUtils.cpp
     )
 set(HEADERS
     src/headers/Utils.h
@@ -33,7 +32,7 @@ set(HEADERS
     src/headers/Array.h
     src/headers/ICloneable.h
     src/headers/TemplatedUtils.h
-    )
+    src/headers/Any.h)
 
 add_library(${MAIN_LIB_NAME} STATIC
             ${SRC}

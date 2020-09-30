@@ -42,5 +42,57 @@ template void foo(T*) { }
  будет вызвана третья функция.
  */
 
+#include <cstddef>
+#include <ostream>
+#include "Array.h"
+
+namespace stepic {
+template <class T, class U>
+void copy_n(T *dst, U *src, size_t n);
+
+template <class T, class Comparator>
+T minimum(const stepic::without_assignment::Array<T> &arr, Comparator cmp);
+
+template <class T>
+void flatten(const without_assignment::Array<T> &arr, std::ostream &os);
+
+/// \brief Copy n elements from src array to dst array.
+/// Cast from U class to T class should be implemented.
+template <class T, class U>
+void copy_n(T *dst, U *src, size_t n) {
+    for (size_t i = 0; i < n; ++i) {
+        dst[i] = static_cast<T>(src[i]);
+    }
+}
+
+/// \brief Find minimum in array arr using cmp as comparator.
+/// \return Minimal element from input array.
+template <class T, class Comparator>
+T minimum(const without_assignment::Array<T> &arr, Comparator cmp) {
+    T min = arr[0];
+    for (size_t i = 1; i < arr.size(); ++i) {
+        min = cmp(min, arr[i]) ? min : arr[i];
+    }
+    return min;
+}
+
+/// \brief
+/// \tparam T
+/// \param arr
+/// \param os
+template <class T>
+void flatten(const without_assignment::Array<T> &arr, std::ostream &os) {
+    for (size_t i = 0; i < arr.size(); ++i) {
+        os << arr[i] << " ";
+    }
+}
+
+template <class T>
+void flatten(const without_assignment::Array<without_assignment::Array<T>> &arr, std::ostream &os) {
+    for (size_t i = 0; i < arr.size(); ++i) {
+        flatten(arr[i], os);
+    }
+}
+}
 
 #endif //STEPICCPPCOURSE_TEMPLATEDUTILS_H
