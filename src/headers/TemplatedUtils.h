@@ -93,6 +93,11 @@ void flatten(const without_assignment::Array<without_assignment::Array<T>> &arr,
         flatten(arr[i], os);
     }
 }
+
+template<class T, size_t size>
+size_t array_size(T (&array)[size]) {
+    return size;
+}
 }
 
 #endif //STEPICCPPCOURSE_TEMPLATEDUTILS_H

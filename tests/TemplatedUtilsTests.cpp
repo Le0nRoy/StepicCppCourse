@@ -20,7 +20,7 @@ TEST(SUITE_NAME, CopyNTest) {
     }
 }
 
-TEST(SUITE_NAME, MinimumTests) {
+TEST(SUITE_NAME, MinimumTest) {
     const size_t size = 5;
     int min = 44;
     int values[] = {999, min, 302, 512, 201};
@@ -37,7 +37,7 @@ TEST(SUITE_NAME, MinimumTests) {
     EXPECT_EQ(res, min);
 }
 
-TEST(SUITE_NAME, FlattenTests) {
+TEST(SUITE_NAME, FlattenTest) {
     typedef stepic::without_assignment::Array<int> ArrayInt;
     const size_t size = 5;
     int min = 44;
@@ -52,4 +52,17 @@ TEST(SUITE_NAME, FlattenTests) {
 
     stepic::without_assignment::Array<ArrayInt> arrOfArrs(size, array);
     stepic::flatten(arrOfArrs, std::cout);
+}
+
+TEST(SUITE_NAME, ArraySizeTest) {
+    int ints[] = {1, 2, 3, 4};
+    double doubles[] = {3.14};
+    int *iptr = ints;
+    size_t res;
+
+    res = stepic::array_size(ints);
+    EXPECT_EQ(res, 4);
+    res = stepic::array_size(doubles);
+    EXPECT_EQ(res, 1);
+//    stepic::array_size(iptr); // тут должна произойти ошибка компиляции
 }

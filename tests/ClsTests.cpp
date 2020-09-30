@@ -5,18 +5,18 @@
 #include "gtest/gtest.h"
 #include "headers/Cls.h"
 
-#define SUITE_NAME ClsTest
+#define SUITE_NAME ClsTests
 
 /// sizeof(Cls) == 24
 
-TEST(SUITE_NAME, CheckGetInteger) {
+TEST(SUITE_NAME, GetIntegerTest) {
     int i_exp = 16;
     Cls cls(0, 0, i_exp);
     int i = get_i(cls);
     EXPECT_EQ(i, i_exp);
 }
 
-TEST(SUITE_NAME, CheckGetChar) {
+TEST(SUITE_NAME, GetCharTest) {
 
     char c_exp = 'n';
     Cls cls(c_exp, 0, 0);
@@ -24,7 +24,7 @@ TEST(SUITE_NAME, CheckGetChar) {
     EXPECT_EQ(c, c_exp);
 }
 
-TEST(SUITE_NAME, CheckGetDouble) {
+TEST(SUITE_NAME, GetDoubleTest) {
 
     double d_exp = 2.5;
     Cls cls(0, d_exp, 0);
