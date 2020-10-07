@@ -29,7 +29,7 @@ set(TEST_SRC
     ExpressionTests.cpp
     RationalTests.cpp
     SharedPtrTests.cpp
-    ArrayTests.cpp ArrayWithoutAssignmentTests.cpp ICloneableTests.cpp TemplatedUtilsTests.cpp AnyTests.cpp SameTypeTests.cpp BaseD1D2D3Tests.cpp)
+    ArrayTests.cpp ArrayWithoutAssignmentTests.cpp ICloneableTests.cpp TemplatedUtilsTests.cpp AnyTests.cpp SameTypeTests.cpp BaseD1D2D3Tests.cpp CastsTests.cpp)
 
 add_executable(${TEST_EXECUTABLE_NAME}
                ${TEST_SRC}
