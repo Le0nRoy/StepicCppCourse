@@ -21,6 +21,10 @@ public:
         }
         return false;
     }
+
+    static bool check_equals_typeinfo(Expression const *left, Expression const *right) {
+        return typeid(*left) == typeid(*right);
+    }
 };
 
 /// sizeof(Number) == 16
@@ -32,6 +36,17 @@ TEST(SUITE_NAME, EqualsTest) {
 
     EXPECT_FALSE(SUITE_NAME::check_equals(num1, bin1));
     EXPECT_TRUE(SUITE_NAME::check_equals(num1, num2));
+
+    delete bin1;
+}
+
+TEST(SUITE_NAME, EqualsTypeIdTest) {
+    Number *num1 = new Number(5);
+    Number *num2 = new Number(1);
+    BinaryOperation *bin1 = new BinaryOperation(num2, '+', num1);
+
+    EXPECT_FALSE(SUITE_NAME::check_equals_typeinfo(num1, bin1));
+    EXPECT_TRUE(SUITE_NAME::check_equals_typeinfo(num1, num2));
 
     delete bin1;
 }

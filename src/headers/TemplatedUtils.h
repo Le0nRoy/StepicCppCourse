@@ -94,9 +94,18 @@ void flatten(const without_assignment::Array<without_assignment::Array<T>> &arr,
     }
 }
 
-template<class T, size_t size>
+template <class T, size_t size>
 size_t array_size(T (&array)[size]) {
     return size;
+}
+
+// возвращает true, если p и q указывают на один и тот же объект
+/// \brief Check if two pointers are point to same object
+/// \tparam T Polymorphic class
+/// \return true if p and q are pointers to same object
+template <class T>
+bool isSameObject(T const *p, T const *q) {
+    return dynamic_cast<const void *>(p) == dynamic_cast<const void *>(q);
 }
 }
 
