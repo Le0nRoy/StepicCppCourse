@@ -9,6 +9,9 @@ set(MAIN_LIB_NAME ${PROJECT_NAME})
 message("Configuring ${MAIN_LIB_NAME}...")
 
 # Include block
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 # Compile block
 set(SRC
     main.cpp
@@ -20,7 +23,11 @@ set(SRC
     src/ScopedPtr.cpp
     src/SharedPtr.cpp
     src/ICloneable.cpp
-    src/BaseD1D2D3.cpp src/headers/ManBearPig.h)
+    src/BaseD1D2D3.cpp
+    src/headers/ManBearPig.h
+    src/pthread_integration.cpp
+    )
+
 set(HEADERS
     src/headers/Utils.h
     src/headers/Cls.h
@@ -32,7 +39,11 @@ set(HEADERS
     src/headers/Array.h
     src/headers/ICloneable.h
     src/headers/TemplatedUtils.h
-    src/headers/Any.h src/headers/SameType.h src/headers/BaseD1D2D3.h src/headers/ManBearPig.h)
+    src/headers/Any.h
+    src/headers/SameType.h
+    src/headers/BaseD1D2D3.h
+    src/headers/ManBearPig.h
+    )
 
 add_library(${MAIN_LIB_NAME} STATIC
             ${SRC}
@@ -44,6 +55,8 @@ add_library(${MAIN_LIB_NAME} STATIC
 #               )
 
 # Link block
+target_link_libraries(${MAIN_LIB_NAME} PRIVATE Threads::Threads)
+
 # Test block
 add_subdirectory(tests)
 
