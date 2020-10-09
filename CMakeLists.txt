@@ -11,6 +11,9 @@ message("Configuring ${MAIN_LIB_NAME}...")
 # Include block
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
+include(FindEXPAT)
+find_package(EXPAT REQUIRED)
+include_directories(${EXPAT_INCLUDE_DIRS})
 
 # Compile block
 set(SRC
@@ -25,8 +28,8 @@ set(SRC
     src/ICloneable.cpp
     src/BaseD1D2D3.cpp
     src/headers/ManBearPig.h
-    src/pthread_integration.cpp
-    )
+    src/examples/pthread_integration.cpp
+    src/examples/xml_parse.cpp)
 
 set(HEADERS
     src/headers/Utils.h
@@ -55,7 +58,10 @@ add_library(${MAIN_LIB_NAME} STATIC
 #               )
 
 # Link block
-target_link_libraries(${MAIN_LIB_NAME} PRIVATE Threads::Threads)
+target_link_libraries(${MAIN_LIB_NAME} PRIVATE
+                      Threads::Threads
+                      ${EXPAT_LIBRARIES}
+                      )
 
 # Test block
 add_subdirectory(tests)
