@@ -66,3 +66,14 @@ TEST(SUITE_NAME, ArraySizeTest) {
     EXPECT_EQ(res, 1);
 //    stepic::array_size(iptr); // тут должна произойти ошибка компиляции
 }
+
+TEST(SUITE_NAME, CompareTest) {
+    std::string s1("Elf");
+    std::string s2("Archer");
+    bool res;
+
+    res = stepic::compare(s1, s2, &std::string::size);
+    EXPECT_TRUE(res);
+    res = stepic::compare(s1, s1, &std::string::size);
+    EXPECT_FALSE(res);
+}

@@ -99,13 +99,25 @@ size_t array_size(T (&array)[size]) {
     return size;
 }
 
-// возвращает true, если p и q указывают на один и тот же объект
 /// \brief Check if two pointers are point to same object
 /// \tparam T Polymorphic class
 /// \return true if p and q are pointers to same object
 template <class T>
 bool isSameObject(T const *p, T const *q) {
     return dynamic_cast<const void *>(p) == dynamic_cast<const void *>(q);
+}
+
+template <class T, class U>
+using templateMethod = U (T::*)() const;
+// Напишите возвращающую bool шаблонную функцию compare,
+// которая принимает две константные ссылки на объекты одного типа и указатель на константный метод
+// этого типа без параметров, который в свою очередь возвращает значение какого-то второго типа.
+// Функция должна сравнивать объекты по значениям, которые для них вернёт соответствующий метод,
+// и возвращать true,
+// если значение для первого объекта оказалось меньше, чем для второго.
+template <class T, class U>
+bool compare(const T &a, const T &b, templateMethod<T, U> mptr) {
+    return (a.*mptr)() < (b.*mptr)();
 }
 }
 

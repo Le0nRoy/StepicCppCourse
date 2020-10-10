@@ -63,7 +63,7 @@ void text(void * data, const char *s, int len)
     }
 }
 
-int main()
+int parse_xml()
 {
     // создаём XML парсер
     XML_Parser p = XML_ParserCreate(0);
