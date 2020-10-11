@@ -28,12 +28,6 @@ public:
         }
     }
 
-    ~Array() {
-        if (data_ != nullptr) {
-            delete[] data_;
-        }
-    }
-
     Array &operator=(const Array &right) {
         if (this == &right) {
             return *this;
@@ -46,6 +40,25 @@ public:
         for (size_t i = 0; i < size_; ++i) {
             data_[i] = right[i];
         }
+        return *this;
+    }
+
+    ~Array() {
+        if (data_ != nullptr) {
+            delete[] data_;
+        }
+    }
+
+    Array(Array &&array) noexcept:
+            size_(array.size_) {
+        data_ = array.data_;
+        array.size_ = 0;
+        array.data_ = nullptr;
+    }
+
+    Array &operator=(Array &&left) noexcept {
+        std::swap(data_, left.data_);
+        std::swap(size_, left.size_);
         return *this;
     }
 
