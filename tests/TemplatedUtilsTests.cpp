@@ -77,3 +77,7 @@ TEST(SUITE_NAME, CompareTest) {
     res = stepic::compare(s1, s1, &std::string::size);
     EXPECT_FALSE(res);
 }
+
+TEST(SUITE_NAME, PrintValuesTest) {
+    stepic::print_values(std::cout, 0, 3.5, "Hello");
+}

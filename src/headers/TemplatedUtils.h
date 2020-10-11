@@ -109,15 +109,27 @@ bool isSameObject(T const *p, T const *q) {
 
 template <class T, class U>
 using templateMethod = U (T::*)() const;
-// Напишите возвращающую bool шаблонную функцию compare,
-// которая принимает две константные ссылки на объекты одного типа и указатель на константный метод
-// этого типа без параметров, который в свою очередь возвращает значение какого-то второго типа.
-// Функция должна сравнивать объекты по значениям, которые для них вернёт соответствующий метод,
-// и возвращать true,
-// если значение для первого объекта оказалось меньше, чем для второго.
+/// \tparam U Some value that is returned from `mptr` and can be compared with operator<
+/// \param mptr Method of class `T`
+/// \return `true` if value returned from call of `mptr` from `a` is less than value from `b`
 template <class T, class U>
 bool compare(const T &a, const T &b, templateMethod<T, U> mptr) {
     return (a.*mptr)() < (b.*mptr)();
+}
+
+void print_values(std::ostream &) {}
+/// \brief Prints `value` and all `args` to `os`
+template <class T, class... Args>
+void print_values(std::ostream &os, T value, const Args&... args) {
+    std::string typeName(typeid(value).name());
+    os << typeName << ": " << value << std::endl;
+    print_values(os, args...);
+
+    // non recursive: https://en.cppreference.com/w/cpp/language/fold
+//    using expander = int[];
+//    (void)expander{0,
+//                   (void(os<<typeid(args).name()<<" : "<<args<<"\n"), 0)...
+//    };
 }
 }
 

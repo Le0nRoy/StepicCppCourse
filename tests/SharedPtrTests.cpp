@@ -7,7 +7,7 @@
 
 #define SUITE_NAME SharedPtrTests
 
-TEST(SUITE_NAME, test) {
+TEST(SUITE_NAME, someTest) {
     int *arr = new int[0];
     std::cout << arr << std::endl;
     delete[] arr;
