@@ -29,7 +29,7 @@ set(SRC
     src/BaseD1D2D3.cpp
     src/headers/ManBearPig.h
     src/examples/pthread_integration.cpp
-    src/examples/xml_parse.cpp)
+    src/examples/xml_parse.cpp src/headers/Point.h)
 
 set(HEADERS
     src/headers/Utils.h
@@ -46,7 +46,7 @@ set(HEADERS
     src/headers/SameType.h
     src/headers/BaseD1D2D3.h
     src/headers/ManBearPig.h
-    )
+    src/headers/Point.h)
 
 add_library(${MAIN_LIB_NAME} STATIC
             ${SRC}
