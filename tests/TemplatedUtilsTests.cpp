@@ -93,3 +93,40 @@ TEST(SUITE_NAME, ToPairTest) {
     EXPECT_EQ(p.first, d);
     EXPECT_STREQ(p.second, c);
 }
+
+TEST(SUITE_NAME, ForEachIntTest) {
+    int m[10] = {1,2,3,4,5,6,7,8,9,10};
+    int m_exp[10] = {1,4,9,16,25,36,49,64,81,100};
+
+    // That's the task of step
+    auto square_fun = [](int &num) {num = num * num;};
+
+    stepic::for_each_int(m, m + 10, square_fun);
+
+    for (int i = 0; i < 0; ++i) {
+        EXPECT_EQ(m[i], m_exp[i]) << "Error on i: " << i;
+    }
+}
+
+TEST(SUITE_NAME, FindIfTest) {
+    int primes[5] = {2,3,5,7,11};
+    int m[10] = {0,0,1,1,4,6,7,8,9,10};
+
+    auto gen_finder = [](int *p, int *q){
+        return [p, q](int x) -> bool {
+            int *pc = p;
+            if (pc == q) {
+            }
+            for (; pc != q; ++pc) {
+                if (*pc == x) {
+                    return true;
+                }
+            }
+            return false;
+        };
+    };
+
+    int * first_prime = stepic::find_if(m, m + 10, gen_finder(primes, primes + 5));
+
+    EXPECT_EQ(*first_prime, 7);
+}

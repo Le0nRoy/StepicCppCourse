@@ -138,6 +138,22 @@ template <size_t first, size_t second, class T>
 auto to_pair(const T &tuple) -> decltype(std::make_pair(std::get<first>(tuple), std::get<second>(tuple))) {
     return std::make_pair(std::get<first>(tuple), std::get<second>(tuple));
 }
+
+template<class F>
+void for_each_int(int * p, int * q, F f)
+{
+    for ( ; p != q; ++p )
+        f(*p);
+}
+
+template<class F>
+int * find_if(int * p, int * q, F f)
+{
+    for ( ; p != q; ++p )
+        if (f(*p))
+            return p;
+    return q;
+}
 }
 
 #endif //STEPICCPPCOURSE_TEMPLATEDUTILS_H
