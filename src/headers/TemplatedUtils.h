@@ -109,6 +109,7 @@ bool isSameObject(T const *p, T const *q) {
 
 template <class T, class U>
 using templateMethod = U (T::*)() const;
+
 /// \tparam U Some value that is returned from `mptr` and can be compared with operator<
 /// \param mptr Method of class `T`
 /// \return `true` if value returned from call of `mptr` from `a` is less than value from `b`
@@ -118,9 +119,10 @@ bool compare(const T &a, const T &b, templateMethod<T, U> mptr) {
 }
 
 void print_values(std::ostream &) {}
+
 /// \brief Prints `value` and all `args` to `os`
 template <class T, class... Args>
-void print_values(std::ostream &os, T value, const Args&... args) {
+void print_values(std::ostream &os, T value, const Args &... args) {
     std::string typeName(typeid(value).name());
     os << typeName << ": " << value << std::endl;
     print_values(os, args...);
@@ -130,6 +132,11 @@ void print_values(std::ostream &os, T value, const Args&... args) {
 //    (void)expander{0,
 //                   (void(os<<typeid(args).name()<<" : "<<args<<"\n"), 0)...
 //    };
+}
+
+template <size_t first, size_t second, class T>
+auto to_pair(const T &tuple) -> decltype(std::make_pair(std::get<first>(tuple), std::get<second>(tuple))) {
+    return std::make_pair(std::get<first>(tuple), std::get<second>(tuple));
 }
 }
 

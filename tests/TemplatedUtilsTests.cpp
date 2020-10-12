@@ -81,3 +81,15 @@ TEST(SUITE_NAME, CompareTest) {
 TEST(SUITE_NAME, PrintValuesTest) {
     stepic::print_values(std::cout, 0, 3.5, "Hello");
 }
+
+TEST(SUITE_NAME, ToPairTest) {
+    int i = 0;
+    double d = 3.5;
+    char const * c = "Hello";
+    auto t = std::make_tuple(i, d, c);
+
+    std::pair<double, char const *> p = stepic::to_pair<1,2>(t);
+
+    EXPECT_EQ(p.first, d);
+    EXPECT_STREQ(p.second, c);
+}
