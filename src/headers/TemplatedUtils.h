@@ -139,20 +139,50 @@ auto to_pair(const T &tuple) -> decltype(std::make_pair(std::get<first>(tuple), 
     return std::make_pair(std::get<first>(tuple), std::get<second>(tuple));
 }
 
-template<class F>
-void for_each_int(int * p, int * q, F f)
-{
-    for ( ; p != q; ++p )
+template <class F>
+void for_each_int(int *p, int *q, F f) {
+    for (; p != q; ++p) {
         f(*p);
+    }
 }
 
-template<class F>
-int * find_if(int * p, int * q, F f)
-{
-    for ( ; p != q; ++p )
-        if (f(*p))
+template <class F>
+int *find_if(int *p, int *q, F f) {
+    for (; p != q; ++p) {
+        if (f(*p)) {
             return p;
+        }
+    }
     return q;
+}
+
+// Напишите функцию apply, которая принимает некоторую функцию / функциональный объект,
+// а так же аргументы для вызова этого объекта, и вызывает его,
+// используя perfect forwarding.
+template <class F, class ...Args>
+auto apply(F fu, Args &&... args) -> decltype(fu(std::forward<Args>(args)...)) {
+    return fu(std::forward<Args>(args)...);
+}
+
+template <class It>
+size_t max_increasing_len(It p, It q) {
+    size_t ret = 0;
+    size_t incLength = 1;
+    It pPrev = p;
+    for (++p; p != q; ++p, ++pPrev) {
+        if (*p > *pPrev) {
+            ++incLength;
+        } else {
+            if (incLength > ret) {
+                ret = incLength;
+            }
+            incLength = 1;
+        }
+    }
+    if (incLength > ret) {
+        ret = incLength;
+    }
+    return ret;
 }
 }
 

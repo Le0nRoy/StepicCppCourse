@@ -2,6 +2,7 @@
 // Created by lap on 9/30/20.
 //
 
+#include <list>
 #include "gtest/gtest.h"
 #include "headers/TemplatedUtils.h"
 
@@ -129,4 +130,31 @@ TEST(SUITE_NAME, FindIfTest) {
     int * first_prime = stepic::find_if(m, m + 10, gen_finder(primes, primes + 5));
 
     EXPECT_EQ(*first_prime, 7);
+}
+
+TEST(SUITE_NAME, ApplyTest) {
+    auto fun = [](std::string a, std::string const& b) { return a += b; };
+    std::string s("world!");
+// s передаётся по lvalue ссылке,
+// а временный объект по rvalue ссылке
+    s = stepic::apply(fun, std::string("Hello, "), s);
+
+    EXPECT_STREQ(s.data(), "Hello, world!");
+}
+
+TEST(SUITE_NAME, MaxIncreasingLenTest) {
+    std::list<int> const l1 = {7,8,9,4,5,6,1,2,3,4};
+    size_t len1 = stepic::max_increasing_len(l1.begin(), l1.end());
+    // 4, соответствует подотрезку 1,2,3,4
+    EXPECT_EQ(len1, 4);
+
+    std::list<int> const l2 = {-3,-2,-1,0,0,1,2,3,4,5};
+    size_t len2 = stepic::max_increasing_len(l2.begin(), l2.end());
+    // 6, соответствует подотрезку 0,1,2,3,4,5
+    EXPECT_EQ(len2, 6);
+
+    std::list<int> const l3 = {4,5,3};
+    size_t len3 = stepic::max_increasing_len(l3.begin(), l3.end());
+    // 6, соответствует подотрезку 0,1,2,3,4,5
+    EXPECT_EQ(len3, 2);
 }

@@ -13,22 +13,31 @@ static Array &fun1(Array &s) {
     return s;
 }
 
+// Move constructor is called only when ret value is temporary parameter
 static Array &&fun2(Array &s) {
     return std::move(s);
 }
 
+// Move constructor is called after std::move function
+// Ret value is being formed by move constructor, but function returns by value, not ref.
 static Array fun3(Array &s) {
     return std::move(s);
 }
 
+// Move constructor is called after std::move function
+// Ret value is being formed by move constructor, but function returns by value, not ref.
 static Array fun4(Array s) {
     return std::move(s);
 }
 
+// Move constructor is called after std::forward function
+// Ret value is being formed by move constructor, but function returns by value, not ref.
+// FIXME but not sure - std::forward gets value by lvalue-ref
 static Array fun5(Array s) {
     return std::forward<Array>(s);
 }
 
+// Move constructor is called only when ret value is temporary parameter
 static Array &&fun6(Array &&s) {
     return std::move(s);
 }
