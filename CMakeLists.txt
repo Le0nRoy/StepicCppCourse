@@ -46,7 +46,7 @@ set(HEADERS
     src/headers/SameType.h
     src/headers/BaseD1D2D3.h
     src/headers/ManBearPig.h
-    src/headers/Point.h)
+    src/headers/Point.h src/headers/Multimethod2.h)
 
 add_library(${MAIN_LIB_NAME} STATIC
             ${SRC}
