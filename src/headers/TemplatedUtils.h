@@ -187,6 +187,17 @@ size_t max_increasing_len(It p, It q) {
     return ret;
 }
 
+template<class FwdIt>
+FwdIt remove_nth(FwdIt p, FwdIt q, size_t n)
+{
+    if (p == q) {
+        return q;
+    }
+    using T = typename std::iterator_traits<FwdIt>::value_type;
+    size_t i = 0;
+    return std::remove_if(p, q, [&i, n](T a){ return i++ == n;});
+}
+
 template<class Iterator>
 size_t count_permutations(Iterator p, Iterator q)
 {

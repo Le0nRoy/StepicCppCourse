@@ -3,6 +3,7 @@
 //
 
 #include <list>
+#include <stack>
 #include "gtest/gtest.h"
 #include "headers/TemplatedUtils.h"
 
@@ -157,6 +158,56 @@ TEST(SUITE_NAME, MaxIncreasingLenTest) {
     size_t len3 = stepic::max_increasing_len(l3.begin(), l3.end());
     // 6, соответствует подотрезку 0,1,2,3,4,5
     EXPECT_EQ(len3, 2);
+}
+
+TEST(SUITE_NAME, RemoveNthTest) {
+    const size_t numOfTests = 8;
+    struct {
+        std::vector<int> v[numOfTests] = {
+                {0,1,2,3,4,5,6,7,8,9,10},
+                {0,1,2,3,4,5,6,7,8,9,10},
+                {0,1,2,3,4,5,6,7,8,9,10},
+                {0,1,1,1,4,5,6,7,8,9,10}, // This test shows why std::remove is not valid in this task
+                {0, 1},
+                {0, 1},
+                {0},
+                {}
+        };
+
+        std::vector<int> expected[numOfTests] = {
+                {0,1,2,3,4,6,7,8,9,10},
+                {0,1,2,3,4,5,6,7,8,9},
+                {1,2,3,4,5,6,7,8,9,10},
+                {0,1,1,4,5,6,7,8,9,10},
+                {0, 1},
+                {0},
+                {},
+                {}
+        };
+
+        int pos[numOfTests] = {
+                5,
+                10,
+                0,
+                1,
+                20,
+                1,
+                0,
+                200
+        };
+    } test_data;
+
+    size_t i;
+
+    for (size_t test = 0; test < numOfTests; ++test) {
+        std::vector<int> v(test_data.v[test]);
+        v.erase(stepic::remove_nth(v.begin(), v.end(), test_data.pos[test]), v.end());
+
+        for (i = 0; i < test_data.expected[test].size(); ++i) {
+            EXPECT_EQ(v.at(i), test_data.expected[test].at(i)) << "at i = " << i
+            << " in test: " << test;
+        }
+    }
 }
 
 TEST(SUITE_NAME, CountPermutationsTest) {
