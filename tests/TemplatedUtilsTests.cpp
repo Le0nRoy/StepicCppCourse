@@ -158,3 +158,17 @@ TEST(SUITE_NAME, MaxIncreasingLenTest) {
     // 6, соответствует подотрезку 0,1,2,3,4,5
     EXPECT_EQ(len3, 2);
 }
+
+TEST(SUITE_NAME, CountPermutationsTest) {
+    std::array<int, 3> a1 = {1,2,3};
+    size_t c1 = stepic::count_permutations(a1.begin(), a1.end()); // 6
+    EXPECT_EQ(c1, 6);
+
+    std::array<int, 5> a2 = {1,2,3,4,4};
+    size_t c2 = stepic::count_permutations(a2.begin(), a2.end()); // 36
+    EXPECT_EQ(c2, 36);
+
+    std::array<const int, 5> a_const = {1,2,3,4,4};
+    size_t c3 = stepic::count_permutations(a2.begin(), a2.end()); // 36
+    EXPECT_EQ(c3, 36);
+}

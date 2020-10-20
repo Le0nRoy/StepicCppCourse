@@ -44,6 +44,8 @@ template void foo(T*) { }
 
 #include <cstddef>
 #include <ostream>
+#include <algorithm>
+#include <vector>
 #include "Array.h"
 
 namespace stepic {
@@ -183,6 +185,23 @@ size_t max_increasing_len(It p, It q) {
         ret = incLength;
     }
     return ret;
+}
+
+template<class Iterator>
+size_t count_permutations(Iterator p, Iterator q)
+{
+    using T = typename std::iterator_traits<Iterator>::value_type;
+    std::vector<T> vec(p, q);
+    auto it1 = vec.begin();
+    auto it2 = vec.end();
+    size_t res = 0;
+    std::sort(it1, it2);
+    do {
+        if (std::adjacent_find(it1, it2) == it2) {
+            ++res;
+        }
+    } while (std::next_permutation(it1, it2));
+    return res;
 }
 }
 
