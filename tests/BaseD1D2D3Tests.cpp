@@ -14,4 +14,6 @@ TEST(SUITE_NAME, BaseD1D2D3Test) {
     const stepic::Base *d2 = stepic::D1BaseToD2Base(d1);
 
     EXPECT_TRUE((const stepic::D2 *)(d2) != nullptr);
+
+    delete d1;
 }

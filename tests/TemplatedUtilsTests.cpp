@@ -223,3 +223,8 @@ TEST(SUITE_NAME, CountPermutationsTest) {
     size_t c3 = stepic::count_permutations(a2.begin(), a2.end()); // 36
     EXPECT_EQ(c3, 36);
 }
+
+TEST(SUITE_NAME, DoMathTest) {
+    EXPECT_TRUE(noexcept(stepic::do_math<int>()));
+    EXPECT_FALSE(noexcept(stepic::do_math<std::string>()));
+}

@@ -46,6 +46,7 @@ template void foo(T*) { }
 #include <ostream>
 #include <algorithm>
 #include <vector>
+#include <utility>
 #include "Array.h"
 
 namespace stepic {
@@ -174,7 +175,8 @@ size_t max_increasing_len(It p, It q) {
     for (++p; p != q; ++p, ++pPrev) {
         if (*p > *pPrev) {
             ++incLength;
-        } else {
+        }
+        else {
             if (incLength > ret) {
                 ret = incLength;
             }
@@ -187,20 +189,18 @@ size_t max_increasing_len(It p, It q) {
     return ret;
 }
 
-template<class FwdIt>
-FwdIt remove_nth(FwdIt p, FwdIt q, size_t n)
-{
+template <class FwdIt>
+FwdIt remove_nth(FwdIt p, FwdIt q, size_t n) {
     if (p == q) {
         return q;
     }
     using T = typename std::iterator_traits<FwdIt>::value_type;
     size_t i = 0;
-    return std::remove_if(p, q, [&i, n](T a){ return i++ == n;});
+    return std::remove_if(p, q, [&i, n](T a) { return i++ == n; });
 }
 
-template<class Iterator>
-size_t count_permutations(Iterator p, Iterator q)
-{
+template <class Iterator>
+size_t count_permutations(Iterator p, Iterator q) {
     using T = typename std::iterator_traits<Iterator>::value_type;
     std::vector<T> vec(p, q);
     auto it1 = vec.begin();
@@ -211,9 +211,31 @@ size_t count_permutations(Iterator p, Iterator q)
         if (std::adjacent_find(it1, it2) == it2) {
             ++res;
         }
-    } while (std::next_permutation(it1, it2));
+    }
+    while (std::next_permutation(it1, it2));
     return res;
 }
+
+// внутри do_math объекты типа T
+// - копируются
+// - присваиваются
+// - складываются оператором +
+template <class T>
+void do_math() noexcept(std::is_nothrow_copy_constructible<T>() &&
+                        std::is_nothrow_copy_assignable<T>() &&
+                        //                        nothrow(std::declval<T &>() = std::declval<T>()) &&
+                        noexcept(std::declval<T>() + std::declval<T>())) {
+    // тело функции нужно оставить пустым
+}
+
+// Просто на понимание unevaluated context
+// (https://en.cppreference.com/w/cpp/language/expressions#Unevaluated_expressions).
+//template <class T>
+//void do_math() noexcept(noexcept(T(*((T *)0)))
+//                        && noexcept(*((T *)0) = *((T *)0))
+//                        && noexcept(*((T *)0) + *((T *)0))) {
+//
+//}
 }
 
 #endif //STEPICCPPCOURSE_TEMPLATEDUTILS_H
